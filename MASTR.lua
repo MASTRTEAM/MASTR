@@ -8734,15 +8734,6 @@ database:set(bot_id..'help2'..msg.sender_user_id_,'true')
 return false 
 end
 
-if text:match("^مشاهده المنشور$") then
-database:set(bot_id.."bot:viewget"..msg.sender_user_id_,true)
-if database:get(bot_id.."lang:gp:"..msg.chat_id_) then
-send(msg.chat_id_, msg.id_, 1, '> Plese forward your post : ', 1, 'md')
-else
-send(msg.chat_id_, msg.id_, 1, '📤┇ ارسل لي المنشور الان ', 1, 'md')
-end
-end
-
 if text == 'تغير امر م3' and SudoBot(msg) then
 send(msg.chat_id_, msg.id_, '☑️┇ الان يمكنك ارسال الكليشه م3')
 database:set(bot_id..'help3'..msg.sender_user_id_,'true')
