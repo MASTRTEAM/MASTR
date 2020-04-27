@@ -906,9 +906,7 @@ end
 
 if text == 'تحديث السورس ☑️' and SudoBot(msg) then 
 os.execute('rm -rf MASTR.lua')
-os.execute("rm -fr inc/Reply.lua")
 os.execute('wget https://raw.githubusercontent.com/MASTRTEAM/MASTR/master/MASTR.lua')
-os.execute('cd inc;wget https://raw.githubusercontent.com/MASTRTEAM/MASTR/master/inc/Reply.lua') 
 send(msg.chat_id_, msg.id_,'🔭┇ تم تحديث البوت \n📮┇ لديك اخر اصدار سورس ماستر\n📡┇ الاصدار ← { 1.2v}')
 dofile('MASTR.lua')  
 end
@@ -2150,9 +2148,7 @@ end
 return false
 end
 os.execute('rm -rf MASTR.lua')
-os.execute("rm -fr inc/Reply.lua")
 os.execute('wget https://raw.githubusercontent.com/MASTRTEAM/MASTR/master/MASTR.lua')
-os.execute('cd inc;wget https://raw.githubusercontent.com/MASTRTEAM/MASTR/master/inc/Reply.lua')
 send(msg.chat_id_, msg.id_,'??┇ تم تحديث البوت \n📮┇ لديك اخر اصدار سورس ماستر\n📡┇ الاصدار ← { 1.2v}')
 dofile('MASTR.lua')  
 end
@@ -8930,13 +8926,6 @@ if (msg.content_.animation_) then
 if msg.content_.animation_.animation_.persistent_id_ == Get_Msg_Pin then
 tdcli_function ({ID = "PinChannelMessage",channel_id_ = msg.chat_id_:gsub('-100',''),message_id_ = msg.id_,disable_notification_ = 0},function(arg,d) database:del(bot_id..'Msg:Pin:Chat'..msg.chat_id_) end,nil)   
 end
-end
-
-tdcli_function ({   ID = "GetMessage", chat_id_ = data.chat_id_,   message_id_ = data.message_id_    }, edited_cb, nil)  
-elseif (data.ID == "UpdateOption" and data.name_ == "my_id") then  
-local filess = io.open("inc/Reply.lua","r")
-if not filess then
-os.execute('cd inc;wget https://raw.githubusercontent.com/MASTRTEAM/MASTR/master/inc/Reply.lua')
 end
 
 if (msg.content_.photo_) then
