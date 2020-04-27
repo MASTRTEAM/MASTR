@@ -8725,16 +8725,6 @@ local texting = {"مووووووووواححح💋😘","مابوس ولي😌�
 send(msg.chat_id_, msg.id_, ''..texting[math.random(#texting)]..'')
 end
 end
-if text == 'تفعيل الردود' and Manager(msg) then   
-database:del(bot_id..'lock:reply'..msg.chat_id_)  
-Text = '☑️┇ تم تفعيل الردود'
-send(msg.chat_id_, msg.id_,Text) 
-end
-if text == 'تعطيل الردود' and Manager(msg) then  
-database:set(bot_id..'lock:reply'..msg.chat_id_,true)  
-Text = '\n☑️┇ تم تعطيل الردود'
-send(msg.chat_id_, msg.id_,Text) 
-end
 if text == 'رابط الحذف' or text == 'رابط حذف' then
 t =[[
 📌┇ رابط الحذف التلي ،
