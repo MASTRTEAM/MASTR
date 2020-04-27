@@ -8734,12 +8734,13 @@ database:set(bot_id..'help2'..msg.sender_user_id_,'true')
 return false 
 end
 
-if text:match("^(gpinfo)$") or text:match("^معلومات المجموعه$") then
-function gpinfo(arg,data)
--- vardump(data) 
-send(msg.chat_id_, msg.id_, 1, '📤┇ ايدي المجموعة » ( '..msg.chat_id_..' )\n🚸┇ عدد الادمنيه » ( *'..data.administrator_count_..' )*\n📛┇ عدد المحظورين » ( *'..data.kicked_count_..' )*\n🏆┇ عدد الاعضاء » ( *'..data.member_count_..' )*\n', 1, 'md') 
-end 
-getChannelFull(msg.chat_id_, gpinfo, nil) 
+if text:match("^مشاهده المنشور$") then
+database:set(bot_id.."bot:viewget"..msg.sender_user_id_,true)
+if database:get(bot_id.."lang:gp:"..msg.chat_id_) then
+send(msg.chat_id_, msg.id_, 1, '> Plese forward your post : ', 1, 'md')
+else
+send(msg.chat_id_, msg.id_, 1, '📤┇ ارسل لي المنشور الان ', 1, 'md')
+end
 end
 
 if text == 'تغير امر م3' and SudoBot(msg) then
