@@ -9187,7 +9187,7 @@ Text_Games = [[
 🎮┋ لعبة حزوره <> حزوره
 🎮┋ لعبة معاني <> معاني
 ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉
-📡┋[Channel GLOBLA](t.me/SsWvV)
+📡┋[Channel MASTR](t.me/SsWvV)
 ]]
 send(msg.chat_id_, msg.id_,Text_Games) 
 end
