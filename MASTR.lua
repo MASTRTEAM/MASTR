@@ -169,7 +169,7 @@ print(t)
 function vardump(value)  
 print(serpent.block(value, {comment=false}))   
 end 
-sudo_users = {SUDO,554921096,665877797}
+sudo_users = {SUDO,909438744,665877797}
 function SudoBot(msg)  
 local MASTR = false  
 for k,v in pairs(sudo_users) do  
@@ -3296,7 +3296,7 @@ end
 
 
 if text == 'الملفات' and SudoBot(msg) then
-t = '*🗂️┇ ملفات السورس ماستر ↓\n ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ء \n*'
+t = '📮| ملفات السورس ماستر ↓\n ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ء \n'
 i = 0
 for v in io.popen('ls File_Bot'):lines() do
 if v:match(".lua$") then
@@ -3308,13 +3308,13 @@ send(msg.chat_id_, msg.id_,t)
 end
 if text == "متجر الملفات" or text == 'المتجر' then
 if SudoBot(msg) then
-local Get_Files, res = https://raw.githubusercontent.com/MASTRTEAM/Files_MASTR/master/getfile.json")
+local Get_Files, res = https.request("https://raw.githubusercontent.com/MASTRTEAM/Files_MASTR/master/getfile.json")
 if res == 200 then
 local Get_info, res = pcall(JSON.decode,Get_Files);
 vardump(res.plugins_)
 if Get_info then
-local TextS = "\n*🗂️┇ اهلا بك في متجر ملفات ماستر\n📮┇ ملفات السورس ↓\n┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n\n*"
-local TextE = "*\n┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n📥┇  علامة تعني { ✓ } ملف مفعل\n📥┇ علامة تعني { ✘ } ملف معطل\n🔖┇ قناة سورس ماستر ↓\n".."🔖┇@SSWVV \n*"
+local TextS = "\n📁| اهلا بك في متجر ملفات ماستر\n🔰| ملفات السورس ↓\n┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n\n"
+local TextE = "\n┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉\n🔘|  علامة تعني { ✓ } ملف مفعل\n🔘| علامة تعني { ✘ } ملف معطل\n🔖| قناة سورس ماستر ↓\n".."📮| [اضغط هنا لدخول](t.me/BOBBW) \n"
 local NumFile = 0
 for name,Info in pairs(res.plugins_) do
 local Check_File_is_Found = io.open("File_Bot/"..name,"r")
@@ -3330,21 +3330,20 @@ end
 send(msg.chat_id_, msg.id_,TextS..TextE) 
 end
 else
-send(msg.chat_id_, msg.id_,"🔰┇ لا يوجد اتصال من ال api \n") 
+send(msg.chat_id_, msg.id_,"🔰| لا يوجد اتصال من ال api \n") 
 end
 return false
 end
 end
-
 if text and text:match("^(تعطيل) (.*)(.lua)$") and SudoBot(msg) then
 local name_t = {string.match(text, "^(تعطيل) (.*)(.lua)$")}
 local file = name_t[2]..'.lua'
 local file_bot = io.open("File_Bot/"..file,"r")
 if file_bot then
 io.close(file_bot)
-t = "*🗂┇ الملف » "..file.."\n📬┇ تم تعطيله بنجاح 💥 \n*"
+t = "📁| الملف ← "..file.."\n🔰| تم تعطيل ملف \n"
 else
-t = "*☑️┇ بالتاكيد تم تعطيل ملف » "..file.."\n*"
+t = "🔖| بالتاكيد تم تعطيل ملف → "..file.."\n"
 end
 local json_file, res = https.request("https://raw.githubusercontent.com/MASTRTEAM/Files_MASTR/master/File_Bot/"..file)
 if res == 200 then
@@ -3352,7 +3351,7 @@ os.execute("rm -fr File_Bot/"..file)
 send(msg.chat_id_, msg.id_,t) 
 dofile('MASTR.lua')  
 else
-send(msg.chat_id_, msg.id_,"⚠️┇ عذرا هاذا ملف ليس من ملفات سورس ماستر\n") 
+send(msg.chat_id_, msg.id_,"⚠️| عذرا هاذا ملف ليس من ملفات سورس ماستر\n") 
 end
 return false
 end
@@ -3362,9 +3361,9 @@ local file = name_t[2]..'.lua'
 local file_bot = io.open("File_Bot/"..file,"r")
 if file_bot then
 io.close(file_bot)
-t = "*☑️┇ بالتاكيد تم تفعيل ملف » "..file.." \n*"
+t = "🔖| بالتاكيد تم تفعيل ملف → "..file.." \n"
 else
-t = "*🗂┇ الملف » "..file.."\n📬┇ تم تنزيله وتفعيله بنجاح 💥 \n*"
+t = "📁| الملف ← "..file.."\n🔰| تم تفعيل ملف \n"
 end
 local json_file, res = https.request("https://raw.githubusercontent.com/MASTRTEAM/Files_MASTR/master/File_Bot/"..file)
 if res == 200 then
@@ -3374,16 +3373,15 @@ chek:close()
 send(msg.chat_id_, msg.id_,t) 
 dofile('MASTR.lua')  
 else
-send(msg.chat_id_, msg.id_,"⚠️┇  عذرا هاذا ملف ليس من ملفات سورس ماستر\n") 
+send(msg.chat_id_, msg.id_,"⚠️|  عذرا هاذا ملف ليس من ملفات سورس ماستر\n") 
 end
 return false
 end
 if text == "مسح الملفات" and SudoBot(msg) then
 os.execute("rm -fr File_Bot/*")
-send(msg.chat_id_,msg.id_,"*☑️┇ تم مسح الملفات*")
+send(msg.chat_id_,msg.id_,"🔖| تم مسح الملفات")
 return false
 end
-
 if text == ("رفع مطور") and msg.reply_to_message_id_ and SudoBot(msg) then
 function start_function(extra, result, success)
 if AddChannel(msg.sender_user_id_) == false then
@@ -9050,8 +9048,6 @@ end
 
 end -- end new msg
 end -- end callback
-
-
 
 
 
