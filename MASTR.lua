@@ -6497,6 +6497,11 @@ end
 end
 send(msg.chat_id_, msg.id_,t)
 end
+if text:match('^الحساب (%d+)$') then
+local id = text:match('^الحساب (%d+)$')
+local text = 'اضغط لمشاهده العضو 🚸'
+tdcli_function ({ID="SendMessage", chat_id_=msg.chat_id_, reply_to_message_id_=msg.id_, disable_notification_=0, from_background_=1, reply_markup_=nil, input_message_content_={ID="InputMessageText", text_=text, disable_web_page_preview_=1, clear_draft_=0, entities_={[0] = {ID="MessageEntityMentionName", offset_=0, length_=19, user_id_=id}}}}, dl_cb, nil)
+end
 if text and text:match("^اضف صلاحيه (.*)$") and Mod(msg) then 
 ComdNew = text:match("^اضف صلاحيه (.*)$")
 if AddChannel(msg.sender_user_id_) == false then
@@ -8865,7 +8870,7 @@ Text = [[
 🔘| قفل ← فتح النكليزيه
 🔘| قفل ← فتح الانلاين
  ء┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉ ┉┉
-🔖| CH » @SsWvV
+??| CH » @SsWvV
 ]]
 send(msg.chat_id_, msg.id_,Text) 
 return false
