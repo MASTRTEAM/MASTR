@@ -9781,7 +9781,7 @@ name = string.gsub(name,'49','7×7=?')
 name = string.gsub(name,'30','50-20=?')
 name = string.gsub(name,'502','500+5-3=?')
 name = string.gsub(name,'80','20×4=')
-send(msg.chat_id_, msg.id_,'🎯 ※ اجب عن التالي » '..name..' ')
+send(msg.chat_id_, msg.id_,'🎯 ※ اجب عن التالي » {' ..name.. '}')
 return false
 end
 end
