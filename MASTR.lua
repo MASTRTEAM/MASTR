@@ -6725,10 +6725,6 @@ return false
 end
 send(msg.chat_id_, msg.id_,'💌┇  عدد رسائلك هنا » { '..database:get(bot_id..'Msg_User'..msg.chat_id_..':'..msg.sender_user_id_)..'}' ) 
 end 
-if text:match("^رسائلي اليوم$") then 
-local Text = database:get(bot_id..'user:msgs'..bot_id..os.date('%d')..':'..msg.chat_id_..':'..msg.sender_user_id_) or 0
-send(msg.chat_id_, msg.id_, 1, '📬┇ رسائلك اليوم *{'..(Text).."} *', 1, 'md')
-end
 if text == 'تفعيل الاذاعه' and SudoBot(msg) then  
 if database:get(bot_id..'Bc:Bots') then
 database:del(bot_id..'Bc:Bots') 
