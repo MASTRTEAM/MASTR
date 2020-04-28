@@ -6726,8 +6726,8 @@ end
 send(msg.chat_id_, msg.id_,'💌┇  عدد رسائلك هنا » { '..database:get(bot_id..'Msg_User'..msg.chat_id_..':'..msg.sender_user_id_)..'}' ) 
 end 
 if text:match("^رسائلي اليوم$") then 
-local MASTR = database:get(bot_id..'Msg_User'..bot_id..os.date('%d')..':'..msg.chat_id_..':'..msg.sender_user_id_) or 0
-send(msg.chat_id_, msg.id_, 1, '📬┇ رسائلك اليوم  *{'..(MASTR)..'} *', 1, 'md')
+local Text = database:get(bot_id..'user:msgs'..bot_id..os.date('%d')..':'..msg.chat_id_..':'..msg.sender_user_id_) or 0
+sendText(msg.chat_id_, msg.id_, 1, '📬┇ رسائلك اليوم *{'..(Text).."} *', 1, 'md')
 end
 if text == 'تفعيل الاذاعه' and SudoBot(msg) then  
 if database:get(bot_id..'Bc:Bots') then
@@ -8063,14 +8063,6 @@ end
 end,nil)
 end
 return false
-end
-
-if text:match("^(gpinfo)$") or text:match("^معلومات المجموعه$") then
-function gpinfo(arg,data)
--- vardump(data) 
-MASTRdx(msg.chat_id_, msg.id_, '📤┇ ايدي المجموعة » ( '..msg.chat_id_..' )\n☑️┇ عدد الادمنيه » ( *'..data.administrator_count_..' )*\n📛┇ عدد المحظورين » ( *'..data.kicked_count_..' )*\n🏆┇ عدد الاعضاء » ( *'..data.member_count_..' )*\n', 'md') 
-end 
-getChannelFull(msg.chat_id_, gpinfo, nil) 
 end
 -----------
 if text ==("مسح") and Mod(msg) and tonumber(msg.reply_to_message_id_) > 0 then
