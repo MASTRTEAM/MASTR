@@ -6727,7 +6727,7 @@ send(msg.chat_id_, msg.id_,'💌┇  عدد رسائلك هنا » { '..database
 end 
 if text:match("^رسائلي اليوم$") then 
 local MASTR = database:get(bot_id..'Msg_User'..bot_id..os.date('%d')..':'..msg.chat_id_..':'..msg.sender_user_id_) or 0
-send(msg.chat_id_, msg.id_, 1, "📬┇ رسائلك اليوم *{"..(MASTR).."} *", 1, 'md')
+send(msg.chat_id_, msg.id_, 1, '📬┇ رسائلك اليوم  *{'..(MASTR)..'} *', 1, 'md')
 end
 if text == 'تفعيل الاذاعه' and SudoBot(msg) then  
 if database:get(bot_id..'Bc:Bots') then
