@@ -9732,7 +9732,6 @@ send(msg.chat_id_, msg.id_,'🔰┋ اسرع واحد يدز الاختلاف »
 return false
 end
 end
-------------------------------------------------------------------------
 if text == ''..(database:get(bot_id..':Set:Moktlf'..msg.chat_id_) or '')..'' then 
 if not database:get(bot_id..'Set:Moktlf:Bot'..msg.chat_id_) then 
 database:del(bot_id..':Set:Moktlf'..msg.chat_id_)
@@ -9740,6 +9739,60 @@ send(msg.chat_id_, msg.id_,'🎁┋ الف مبروك لقد فزت \n♻┋ ل�
 database:incrby(bot_id..'NUM:GAMES'..msg.chat_id_..msg.sender_user_id_, 1)  
 end
 database:set(bot_id..'Set:Moktlf:Bot'..msg.chat_id_,true)
+end
+if text == 'رياضيات' then
+if AddChannel(msg.sender_user_id_) == false then
+local textchuser = database:get(bot_id..'text:ch:user')
+if textchuser then
+send(msg.chat_id_, msg.id_,'['..textchuser..']')
+else
+send(msg.chat_id_, msg.id_,'🔅┋عذراً عليك الاشتراك في القناة\n📌┋اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
+end
+return false
+end
+if database:get(bot_id..'Lock:Games'..msg.chat_id_) then
+Mohamed = {'9','2','60','9','5','4','25','10','17','15','39','5','16','3','0','250','440','81','4','20','12','36','49','30','502','80',};
+name = Mohamed[Mohamed.random(#Mohamed)]
+database:del(bot_id..'Set:Ryadeat:Bot'..msg.chat_id_)
+database:set(bot_id..':Set:Ryadeat'..msg.chat_id_,name)
+name = string.gsub(name,'9','2+7=?')
+name = string.gsub(name,'2','5-3=?')
+name = string.gsub(name,'60','(30)² =?')
+name = string.gsub(name,'9','2+2+5=?')
+name = string.gsub(name,'5','8-3=?')
+name = string.gsub(name,'4','40÷10=?')
+name = string.gsub(name,'25','30-5=?')
+name = string.gsub(name,'10','100÷10=?')
+name = string.gsub(name,'17','10+5+2=?')
+name = string.gsub(name,'15','25-10=?')
+name = string.gsub(name,'39','44-5=?')
+name = string.gsub(name,'5','12+1-8=?')
+name = string.gsub(name,'16','16+16-16=?')
+name = string.gsub(name,'3','3+7-7=?')
+name = string.gsub(name,'0','7-7=?')
+name = string.gsub(name,'250','300-50=?')
+name = string.gsub(name,'440','400+40=?')
+name = string.gsub(name,'81','88-7=?')
+name = string.gsub(name,'4','10-2-4=?')
+name = string.gsub(name,'20','9+9+2=?')
+name = string.gsub(name,'12','12+12-12=?')
+name = string.gsub(name,'36','6×6=?')
+name = string.gsub(name,'49','7×7=?')
+name = string.gsub(name,'30','50-20=?')
+name = string.gsub(name,'502','500+5-3=?')
+name = string.gsub(name,'80','20×4=')
+send(msg.chat_id_, msg.id_,'🎯 ※اجب عن التالي » {'..name..'}')
+return false
+end
+end
+------------------------------------------------------------------------
+if text == ''..(database:get(bot_id..':Set:Ryadeat'..msg.chat_id_) or '')..'' then 
+if not database:get(bot_id..'Set:Ryadeat:Bot'..msg.chat_id_) then 
+database:del(bot_id..':Set:Ryadeat'..msg.chat_id_)
+send(msg.chat_id_, msg.id_,'🎁┋ الف مبروك لقد فزت \n♻┋ للعب مره اخره ارسل »{ رياضيات }')
+database:incrby(bot_id..'NUM:GAMES'..msg.chat_id_..msg.sender_user_id_, 1)  
+end
+database:set(bot_id..'Set:Ryadeat:Bot'..msg.chat_id_,true)
 end
 ------------------------------------------------------------------------
 if text == 'امثله' then
