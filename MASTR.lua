@@ -9752,7 +9752,7 @@ return false
 end
 if database:get(bot_id..'Lock:Games'..msg.chat_id_) then
 Mohamed = {'9','2','60','9','5','4','25','10','17','15','39','5','16','3','0','250','440','81','4','20','12','36','49','30','502','80',};
-name = Mohamed[Mohamed.random(#Mohamed)]
+name = Mohamed[math.random(#Mohamed)]
 database:del(bot_id..'Set:Ryadeat:Bot'..msg.chat_id_)
 database:set(bot_id..':Set:Ryadeat'..msg.chat_id_,name)
 name = string.gsub(name,'9','2+7=?')
