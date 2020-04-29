@@ -6735,7 +6735,7 @@ end
 send(msg.chat_id_, msg.id_,Text) 
 end
 if text:match("^(time)$") or text:match("^(الوقت)$")  then
-send(msg.chat_id_, msg.id_, 1, '⏰ ┇ الساعه ~ '..os.date("%I:%M%p")..' \n📆 ┇ التاريخ ~  '..os.date("%Y/%m/%d")..' \n', 1, 'md')
+send(msg.chat_id_, msg.id_, '⏰ ┇ الساعه ~ '..os.date("%I:%M%p")..' \n📆 ┇ التاريخ ~  '..os.date("%Y/%m/%d")..' \n', 'md')
 end
 if text == 'تفعيل التواصل' and SudoBot(msg) then  
 if database:get(bot_id..'Tuasl:Bots') then
@@ -7249,7 +7249,7 @@ db = 'فيديو ??'
 elseif database:get(bot_id.."Add:Rd:Manager:File"..v..msg.chat_id_) then
 db = 'ملف 📁'
 elseif database:get(bot_id.."Add:Rd:Manager:Audio"..v..msg.chat_id_) then
-db = 'اغنيه 🎵'
+db = 'اغنيه ??'
 end
 text = text..""..k..">> ("..v..") » {"..db.."}\n"
 end
@@ -9414,6 +9414,60 @@ send(msg.chat_id_, msg.id_,'🎁┋ الف مبروك لقد فزت \n♻┋ ل�
 database:incrby(bot_id..'NUM:GAMES'..msg.chat_id_..msg.sender_user_id_, 1)  
 end
 database:set(bot_id..'Set:Moktlf:Bot'..msg.chat_id_,true)
+end
+if text == "متجر الملفات" or text == 'المتجر' then
+local Get_Files, res = https.request("https://raw.githubusercontent.com/DevMASTRBot/MASTRFile/master/getfile.json")
+if res == 200 then
+local Get_info, res = pcall(JSON.decode,Get_Files);
+if Get_info then
+local TextS = "\n📦┇قائمه ملفات متجر سورس ستورم\n💢┇الملفات المتوفره حاليا\n━━━━━━━━━━━━━\n\n"
+local TextE = "\n━━━━━━━━━━━━━\n☑┇علامة ← {✔} تعني الملف مفعل\n☑┇علامة ← {❌} تعني الملف معطل\n"
+local NumFile = 0
+for name,Info in pairs(res.plugins_) do
+local Check_File_is_Found = io.open("Files/"..name,"r")
+if Check_File_is_Found then
+io.close(Check_File_is_Found)
+CeckFile = "{✔}"
+else
+CeckFile = "{✖}"
+end
+NumFile = NumFile + 1
+TextS = TextS..'*'..NumFile.." : * `"..name..'` → '..CeckFile..'\n[- اضغط لرئية معلومات الملف]('..Info..')\n'
+end
+send(msg.chat_id_, msg.id_,TextS..TextE) 
+end
+else
+send(msg.chat_id_, msg.id_,"⚠┇ لا يوجد اتصال من ال api") 
+end
+if text == "مسح جميع الملفات" then
+os.execute("rm -fr Files/*")
+send(msg.chat_id_,msg.id_,"💢┇تم مسح جميع ملفات المفعله")
+if text and text:match("^(تعطيل ملف) (.*)(.lua)$") then
+local File_Get = {string.match(text, "^(تعطيل ملف) (.*)(.lua)$")}
+local File_Name = File_Get[2]..'.lua'
+local Get_Json, Res = https.request("https://raw.githubusercontent.com/DevMASTRBot/MASTRFile/master/plugins_/"..File_Name)
+if Res == 200 then
+os.execute("rm -fr Files/"..File_Name)
+send(msg.chat_id_, msg.id_,"\n🗂┇الملف ← *"..File_Name.."*\n☑┇تم تعطيله وحذفه من البوت بنجاح") 
+dofile('MASTR.lua')  
+else
+send(msg.chat_id_, msg.id_,"📂┇لا يوجد ملف بهاذا الاسم") 
+end
+if text and text:match("^(تفعيل ملف) (.*)(.lua)$") then
+local File_Get = {string.match(text, "^(تفعيل ملف) (.*)(.lua)$")}
+local File_Name = File_Get[2]..'.lua'
+local Get_Json, Res = https.request("https://raw.githubusercontent.com/DevMASTRBot/MASTRFile/master/plugins_/"..File_Name)
+if Res == 200 then
+local ChekAuto = io.open("Files/"..File_Name,'w+')
+ChekAuto:write(Get_Json)
+ChekAuto:close()
+send(msg.chat_id_, msg.id_,"\n🗂┇الملف ← *"..File_Name.."*\n☑┇تم تفعيله في البوت بنجاح") 
+dofile('MASTR.lua')  
+else
+send(msg.chat_id_, msg.id_,"📂┇لا يوجد ملف بهاذا الاسم") 
+end
+return false
+end
 end
 ------------------------------------------------------------------------
 if text == 'امثله' then
