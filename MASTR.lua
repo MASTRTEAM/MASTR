@@ -6734,14 +6734,8 @@ Text = '\n☑️┇ بالتاكيد تم تفعيل الاذاعه '
 end
 send(msg.chat_id_, msg.id_,Text) 
 end
-if text == 'تعطيل الاذاعه' and SudoBot(msg) then  
-if not database:get(bot_id..'Bc:Bots') then
-database:set(bot_id..'Bc:Bots',true) 
-Text = '\n☑️┇ تم تعطيل الاذاعه' 
-else
-Text = '\n☑️┇ بالتاكيد تم تعطيل الاذاعه'
-end
-send(msg.chat_id_, msg.id_,Text) 
+if text:match("^(time)$") or text:match("^(الوقت)$")  then
+send(msg.chat_id_, msg.id_, 1, '⏰ ┇ الساعه ~ '..os.date("%I:%M%p")..' \n📆 ┇ التاريخ ~  '..os.date("%Y/%m/%d")..' \n', 1, 'md')
 end
 if text == 'تفعيل التواصل' and SudoBot(msg) then  
 if database:get(bot_id..'Tuasl:Bots') then
