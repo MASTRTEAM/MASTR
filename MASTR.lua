@@ -9601,7 +9601,12 @@ Text_Games = [[
 ]]
 send(msg.chat_id_, msg.id_,Text_Games) 
 end
-
+if text == "زخرفه" then
+if not database:get(bot_id.."lock:skrafa"..msg.chat_id_) then   
+database:setex(bot_id.."skrafa:name" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 10000, true)   
+send(msg.chat_id_, msg.id_, '✉┇ ارسل لي الاسم') 
+return false
+end
 local zhrf1 = text:gsub('ض', 'ضِٰـِۢ')
 zhrf1 = zhrf1:gsub('ص', 'صِٰـِۢ')
 zhrf1 = zhrf1:gsub('ث', 'ثِٰـِۢ')
@@ -10901,12 +10906,6 @@ else
 Text = '\n✅┋ بالتاكيد تم تفعيل الزخرفه'
 end
 send(msg.chat_id_, msg.id_,Text) 
-end
-if text == "زخرفه" then
-if not database:get(bot_id.."lock:skrafa"..msg.chat_id_) then   
-database:setex(bot_id.."skrafa:name" .. msg.chat_id_ .. "" .. msg.sender_user_id_, 10000, true)   
-send(msg.chat_id_, msg.id_, '✉┇ ارسل لي الاسم') 
-return false
 end
 if text == 'نقاطي' or text == 'نقاطي' then 
 if AddChannel(msg.sender_user_id_) == false then
