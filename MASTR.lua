@@ -2163,7 +2163,9 @@ end
 return false
 end
 os.execute('rm -rf MASTR.lua')
+os.execute("rm -fr plugins_/ZHRFA.lua")
 os.execute('wget https://raw.githubusercontent.com/MASTRTEAM/MASTR/master/MASTR.lua')
+os.execute('cd plugins_;wget https://raw.githubusercontent.com/MASTRTEAM/MASTR/master/plugins_/ZHRFA.lua') 
 send(msg.chat_id_, msg.id_,'??┇ تم تحديث البوت \n📮┇ لديك اخر اصدار سورس ماستر\n📡┇ الاصدار ← { 1.2v}')
 dofile('MASTR.lua')  
 end
