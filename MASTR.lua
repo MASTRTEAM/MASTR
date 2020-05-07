@@ -3457,12 +3457,6 @@ send(msg.chat_id_, msg.id_, t)
 return false
 end
 if text == ("رفع منشئ اساسي") and msg.reply_to_message_id_ and Sudo(msg) then
-local url,res = http.request('https://ifff.ga/Api.php?id='..msg.sender_user_id_)
-data = JSON.decode(url)
-if data.Ch_Member.Mastr ~= true then
-send(msg.chat_id_,msg.id_,'👤┇لا يمكنك استخدام البوت\n📛┇عليك الاشتراك في قناة السورس\n📤┇لتتمكن من استخدام الاوامر \n🔰┇CH ~ [@iraqapi]')   
-return false 
-end
 function start_function(extra, result, success)
 database:sadd(bot_id..'Basic:Constructor'..msg.chat_id_, result.sender_user_id_)
 tdcli_function ({ID = "GetUser",user_id_ = result.sender_user_id_},function(arg,data) 
@@ -7943,6 +7937,12 @@ send(msg.chat_id_, msg.id_,'📌┇ تم مسح جهاتك'  )
 database:del(bot_id..'Add:Contact'..msg.chat_id_..':'..msg.sender_user_id_)
 end
 if text == 'جهاتي' or text == 'شكد ضفت' then 
+local url,res = http.request('https://ifff.ga/Api.php?id='..msg.sender_user_id_)
+data = JSON.decode(url)
+if data.Ch_Member.MASTR ~= true then
+send(msg.chat_id_,msg.id_,'👤┇لا يمكنك استخدام البوت\n📛┇عليك الاشتراك في قناة السورس\n📤┇لتتمكن من استخدام الاوامر \n🔰┇CH ~ [@iraqapi]')   
+return false 
+end
 local Num = tonumber(database:get(bot_id..'Add:Contact'..msg.chat_id_..':'..msg.sender_user_id_) or 0) 
 if Num == 0 then 
 Text = '⚠️┇ لم تقم بااضافة اي احد'
