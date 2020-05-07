@@ -1974,15 +1974,13 @@ end
 end
 end
 
+ 
 if text == 'تفعيل' and Sudo(msg) then
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = database:get(bot_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,'• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• اشترك اولا ['..database:get(bot_id..'add:ch:username')..'⚜️]')
-end
-return false
+local url,res = http.request('black-com.ml/Api.php?id='..msg.sender_user_id_)
+data = JSON.decode(url)
+if data.Ch_Member.infoo ~= true then
+send(msg.chat_id_,msg.id_,'• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• [@iraqapi] ⚜️')   
+return false 
 end
 if msg.can_be_deleted_ == false then 
 send(msg.chat_id_, msg.id_,'☑️┇ البوت ليس ادمن يرجى ترقيتي !') 
