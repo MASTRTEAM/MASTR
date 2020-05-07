@@ -3456,16 +3456,12 @@ end
 send(msg.chat_id_, msg.id_, t)
 return false
 end
-
 if text == ("رفع منشئ اساسي") and msg.reply_to_message_id_ and Sudo(msg) then
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = database:get(bot_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,'• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• اشترك اولا ['..database:get(bot_id..'add:ch:username')..'⚜️]')
-end
-return false
+local url,res = http.request('https://ifff.ga/Api.php?id='..msg.sender_user_id_)
+data = JSON.decode(url)
+if data.Ch_Member.Mastr ~= true then
+send(msg.chat_id_,msg.id_,'👤┇لا يمكنك استخدام البوت\n📛┇عليك الاشتراك في قناة السورس\n📤┇لتتمكن من استخدام الاوامر \n🔰┇CH ~ [@iraqapi]')   
+return false 
 end
 function start_function(extra, result, success)
 database:sadd(bot_id..'Basic:Constructor'..msg.chat_id_, result.sender_user_id_)
@@ -6716,12 +6712,6 @@ send(msg.chat_id_, msg.id_,'⚠️┇ تم مسح رسائلك جميعها'  )
 database:del(bot_id..'Msg_User'..msg.chat_id_..':'..msg.sender_user_id_) 
 end
 if text == "رسايلي" or text == "رسائلي" or text == "msg" then 
-local url,res = http.request('https://ifff.ga/Api.php?id='..msg.sender_user_id_)
-data = JSON.decode(url)
-if data.Ch_Member.Mastr ~= true then
-send(msg.chat_id_,msg.id_,'👤┇لا يمكنك استخدام البوت\n📛┇عليك الاشتراك في قناة السورس\n📤┇لتتمكن من استخدام الاوامر \n🔰┇CH ~ [@iraqapi]')   
-return false 
-end
 send(msg.chat_id_, msg.id_,'💌┇  عدد رسائلك هنا » { '..database:get(bot_id..'Msg_User'..msg.chat_id_..':'..msg.sender_user_id_)..'}' ) 
 end 
 if text == 'تفعيل الاذاعه' and SudoBot(msg) then  
@@ -8414,7 +8404,7 @@ send(msg.chat_id_, msg.id_, ''..texting[math.random(#texting)]..'')
 end
 end
 ------
-if text == "😢" or text == "😢😢" then
+if text == "??" or text == "😢😢" then
 if not database:get(bot_id..'lock:add'..msg.chat_id_) then
 local texting = {"يبجي دلوع😜😹","هاي عود انت جبير كاعد تبجي😑💔","لتلح درينه تبجي😒"}
 send(msg.chat_id_, msg.id_, ''..texting[math.random(#texting)]..'')
@@ -9500,12 +9490,6 @@ Text_Games = [[
 send(msg.chat_id_, msg.id_,Text_Games) 
 end
 if text == 'نقاطي' or text == 'نقاطي' then 
-local url,res = http.request('https://ifff.ga/Api.php?id='..msg.sender_user_id_)
-data = JSON.decode(url)
-if data.Ch_Member.Mastr ~= true then
-send(msg.chat_id_,msg.id_,'👤┇لا يمكنك استخدام البوت\n📛┇عليك الاشتراك في قناة السورس\n📤┇لتتمكن من استخدام الاوامر \n🔰┇CH ~ [@iraqapi]')   
-return false 
-end
 local Num = database:get(bot_id..'NUM:GAMES'..msg.chat_id_..msg.sender_user_id_) or 0
 if Num == 0 then 
 Text = '✖┋ لم تلعب اي لعبهہ‌‏ للحصول على نقاط'
