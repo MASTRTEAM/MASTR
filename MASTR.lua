@@ -7937,12 +7937,6 @@ send(msg.chat_id_, msg.id_,'📌┇ تم مسح جهاتك'  )
 database:del(bot_id..'Add:Contact'..msg.chat_id_..':'..msg.sender_user_id_)
 end
 if text == 'جهاتي' or text == 'شكد ضفت' then 
-local url,res = http.request('https://ifff.ga/Api.php?id='..msg.sender_user_id_)
-data = JSON.decode(url)
-if data.Ch_Member.MASTR ~= true then
-send(msg.chat_id_,msg.id_,'👤┇لا يمكنك استخدام البوت\n📛┇عليك الاشتراك في قناة السورس\n📤┇لتتمكن من استخدام الاوامر \n🔰┇CH ~ [@iraqapi]')   
-return false 
-end
 local Num = tonumber(database:get(bot_id..'Add:Contact'..msg.chat_id_..':'..msg.sender_user_id_) or 0) 
 if Num == 0 then 
 Text = '⚠️┇ لم تقم بااضافة اي احد'
@@ -8193,10 +8187,22 @@ delete_msg(chat, msgs)
 end
 
 if text == 'تفعيل الردود' and Manager(msg) then  
+local url,res = http.request('https://ifff.ga/Api.php?id='..msg.sender_user_id_)
+data = JSON.decode(url)
+if data.Ch_Member.MASTR ~= true then
+send(msg.chat_id_,msg.id_,'👤┇لا يمكنك استخدام البوت\n📛┇عليك الاشتراك في قناة السورس\n📤┇لتتمكن من استخدام الاوامر \n🔰┇CH ~ [@iraqapi]')   
+return false 
+end
 send(msg.chat_id_, msg.id_, '☑┋ تم تفعيل الردود')
 database:del(bot_id..'lock:add'..msg.chat_id_)
 end
 if text == 'تعطيل الردود' and Manager(msg) then  
+local url,res = http.request('https://ifff.ga/Api.php?id='..msg.sender_user_id_)
+data = JSON.decode(url)
+if data.Ch_Member.MASTR ~= true then
+send(msg.chat_id_,msg.id_,'👤┇لا يمكنك استخدام البوت\n📛┇عليك الاشتراك في قناة السورس\n📤┇لتتمكن من استخدام الاوامر \n🔰┇CH ~ [@iraqapi]')   
+return false 
+end
 send(msg.chat_id_, msg.id_, '🚫┋ تم تعطيل الردود')
 database:set(bot_id..'lock:add'..msg.chat_id_, true)
 end
