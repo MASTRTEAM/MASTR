@@ -6815,19 +6815,13 @@ send(msg.chat_id_, msg.id_,'⚠️┇ تم مسح رسائلك جميعها'  )
 database:del(bot_id..'Msg_User'..msg.chat_id_..':'..msg.sender_user_id_) 
 end
 if text == "رسايلي" or text == "رسائلي" or text == "msg" then 
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = database:get(bot_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,'• اهلا بك عزيزي 🔱 •\n• لايمكنك استخدام البوت ✅ •\n• عليك الاشتراك في القناة 🔽 •\n• اشترك اولا ['..database:get(bot_id..'add:ch:username')..'⚜️]')
-end
-return false
+local url,res = http.request('https://ifff.ga/Api.php?id='..msg.sender_user_id_)
+data = JSON.decode(url)
+if data.Ch_Member.Mastr ~= true then
+send(msg.chat_id_,msg.id_,'👤┇لا يمكنك استخدام البوت\n📛┇عليك الاشتراك في قناة السورس\n📤┇لتتمكن من استخدام الاوامر \n🔰┇CH ~ [@iraqapi]')   
+return false 
 end
 send(msg.chat_id_, msg.id_,'💌┇  عدد رسائلك هنا » { '..database:get(bot_id..'Msg_User'..msg.chat_id_..':'..msg.sender_user_id_)..'}' ) 
-end 
-if text =="رسائلي اليوم" then
-send(msg.chat_id_, msg.id_,'💌┇  عدد رسائلك هنا » { '..database:get(bot_id..'Msg_User'..os.date('%d')..msg.chat_id_..':'..msg.sender_user_id_)..'}' ) 
 end 
 if text == 'تفعيل الاذاعه' and SudoBot(msg) then  
 if database:get(bot_id..'Bc:Bots') then
@@ -9605,14 +9599,11 @@ Text_Games = [[
 send(msg.chat_id_, msg.id_,Text_Games) 
 end
 if text == 'نقاطي' or text == 'نقاطي' then 
-if AddChannel(msg.sender_user_id_) == false then
-local textchuser = database:get(bot_id..'text:ch:user')
-if textchuser then
-send(msg.chat_id_, msg.id_,'['..textchuser..']')
-else
-send(msg.chat_id_, msg.id_,'🔅┋عذراً عليك الاشتراك في القناة\n📌┋اشترك هنا ['..database:get(bot_id..'add:ch:username')..']')
-end
-return false
+local url,res = http.request('https://ifff.ga/Api.php?id='..msg.sender_user_id_)
+data = JSON.decode(url)
+if data.Ch_Member.Mastr ~= true then
+send(msg.chat_id_,msg.id_,'👤┇لا يمكنك استخدام البوت\n📛┇عليك الاشتراك في قناة السورس\n📤┇لتتمكن من استخدام الاوامر \n🔰┇CH ~ [@iraqapi]')   
+return false 
 end
 local Num = database:get(bot_id..'NUM:GAMES'..msg.chat_id_..msg.sender_user_id_) or 0
 if Num == 0 then 
